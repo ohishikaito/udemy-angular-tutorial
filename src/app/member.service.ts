@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { memory } from 'console';
 
 import { Member } from './member';
 import { MEMBERS } from './mock-members';

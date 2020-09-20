@@ -1,5 +1,5 @@
-// import { Component, Input, OnInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
   templateUrl: './member-detail.component.html',
 })
 export class MemberDetailComponent implements OnInit {
-  // @Input() member: Member;
-  member: Member;
+  @Input() member: Member;
+  // member: Member; //@Input()がないと読み込めないらしい。
   constructor(
     private memberService: MemberService,
     private route: ActivatedRoute,
@@ -27,13 +27,9 @@ export class MemberDetailComponent implements OnInit {
 
   getMember() {
     const id = +this.route.snapshot.paramMap.get('id');
+    // console.log(+this.route.snapshot.paramMap.get('id'));
     this.memberService.getMember(id).then((member) => (this.member = member));
-    // this.route.paramMap
-    //   .switchMap((param: ParamMap) => {
-    //     // console.log(param);
-    //     this.memberService.getMember(+param.get('id'));
-    //   })
-    //   .subscribe((member) => this.member);
+    // this.memberService.getMember(id).then((member) => console.log(member));
   }
 
   goBack() {
