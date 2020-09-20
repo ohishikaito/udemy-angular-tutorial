@@ -1,0 +1,8 @@
+<div *ngIf="member">
+  <h2>セレクテットメンバー</h2>
+  <div><label>id:</label>{{ member.id }}</div>
+  <div>
+    <label>name:</label>
+    <input type="text" [(ngModel)]="member.name" placeholder="name" />
+  </div>
+</div>

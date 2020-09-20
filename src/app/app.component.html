@@ -1,4 +1,15 @@
-<!-- {{ title }} {{ member.name }}
-<div>id: {{ member.id }}</div>
-<div>name: {{ member.name }}</div> -->
-aaa
+<h1>{{ title }}</h1>
+<div>
+  <h2>社員一覧</h2>
+  <ul class="members">
+    <li
+      *ngFor="let member of members"
+      (click)="onSelect(member)"
+      [class.selected]="member === selectedMember"
+    >
+      <span class="badge">{{ member.id }}</span
+      >{{ member.name }}
+    </li>
+  </ul>
+</div>
+<app-member-detail [member]="selectedMember"></app-member-detail>
