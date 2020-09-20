@@ -11,4 +11,8 @@
     </li>
   </ul>
 </div>
-<app-member-detail [member]="selectedMember"></app-member-detail>
+<!-- <app-member-detail [member]="selectedMember"></app-member-detail> -->
+<div *ngIf="selectedMember">
+  <h2>{{ selectedMember.name }}</h2>
+  <button (click)="gotoDetail()">詳細</button>
+</div>

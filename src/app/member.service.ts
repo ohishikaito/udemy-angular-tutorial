@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { memory } from 'console';
 
 import { Member } from './member';
 import { MEMBERS } from './mock-members';
@@ -10,6 +11,12 @@ import { MEMBERS } from './mock-members';
 export class MemberService {
   getMembers(): Promise<Member[]> {
     return Promise.resolve(MEMBERS);
+  }
+
+  getMember(id: number): Promise<Member> {
+    return this.getMembers().then((members) =>
+      members.find((member) => member.id === id)
+    );
   }
 }
 // export class MemberService {
