@@ -1,1 +1,14 @@
-<p>members works!</p>
+<div>
+  <h2>社員一覧</h2>
+  <ul class="members">
+    <li
+      *ngFor="let member of members"
+      (click)="onSelect(member)"
+      [class.selected]="member === selectedMember"
+    >
+      <span class="badge">{{ member.id }}</span
+      >{{ member.name }}
+    </li>
+  </ul>
+</div>
+<app-member-detail [member]="selectedMember"></app-member-detail>

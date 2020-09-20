@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MembersComponent } from './members/members.component';
+import { MemberService } from './member.service';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [AppComponent, MemberDetailComponent, MembersComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [],
+  providers: [MemberService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
