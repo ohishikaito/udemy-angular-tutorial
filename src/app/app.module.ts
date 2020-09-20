@@ -7,10 +7,15 @@ import { AppComponent } from './app.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MembersComponent } from './members/members.component';
 import { MemberService } from './member.service';
-// import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, MemberDetailComponent, MembersComponent],
+  declarations: [
+    AppComponent,
+    MemberDetailComponent,
+    MembersComponent,
+    DashboardComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [MemberService],
   bootstrap: [AppComponent],
