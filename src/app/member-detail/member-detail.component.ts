@@ -7,8 +7,8 @@ import { Member } from '../member';
 // import 'rxjs/add/operator/switchMap';
 import { MemberService } from '../member.service';
 import { Observable } from 'rxjs';
-import { memory } from 'console';
-
+// import { memory } from 'console';
+//
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
@@ -50,7 +50,7 @@ export class MemberDetailComponent implements OnInit {
     this.memberService.update(this.member).subscribe(() => this.goBack());
   }
 
-  deleteMember(){
+  deleteMember() {
     // this.members = this.members.filter((h) => h !== member);
     // this.members = this.members.fil;
     this.memberService.delete(this.member).subscribe(() => this.goBack());
