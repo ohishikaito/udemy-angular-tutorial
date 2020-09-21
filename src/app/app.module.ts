@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './in-memory-data.service';
 
 // prividers
 import { MemberService } from './member.service';
@@ -29,9 +29,9 @@ import { MemberService } from './member.service';
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     // forRootに引数2つ必要らしいけど実験してみよう
-    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-    //   dataEncapsulation: false,
-    // }),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    }),
   ],
   providers: [MemberService],
   bootstrap: [AppComponent],

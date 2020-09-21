@@ -7,6 +7,7 @@ import { Member } from '../member';
 // import 'rxjs/add/operator/switchMap';
 import { MemberService } from '../member.service';
 import { Observable } from 'rxjs';
+import { memory } from 'console';
 
 @Component({
   selector: 'app-member-detail',
@@ -28,11 +29,14 @@ export class MemberDetailComponent implements OnInit {
   getMember() {
     const id = +this.route.snapshot.paramMap.get('id');
     // console.log(+this.route.snapshot.paramMap.get('id'));
-    this.memberService.getMember(id).then((member) => (this.member = member));
-    // this.memberService.getMember(id).then((member) => console.log(member));
+    this.memberService
+      .getMember(id)
+      .subscribe((member) => (this.member = member));
   }
 
   goBack() {
     this.location.back();
   }
+
+  save() {}
 }

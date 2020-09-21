@@ -13,6 +13,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.membersService
       .getMembers()
-      .then((members) => (this.members = members.slice(1, 5)));
+      .subscribe((members) => (this.members = members.slice(1, 5)));
   }
 }
