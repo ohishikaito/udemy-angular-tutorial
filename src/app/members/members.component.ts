@@ -23,11 +23,24 @@ export class MembersComponent implements OnInit {
   }
 
   getMembers(): void {
-    this.memberService.getMembers().subscribe((members) => (this.members = members));
+    this.memberService
+      .getMembers()
+      .subscribe((members) => (this.members = members));
     // console.log(this.members);
   }
 
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedMember.id]);
+  }
+
+  addMember(name: string): void {
+    // console.log(name);
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.memberService.create({ name } as Member).subscribe((member) => {
+      this.members.push(member);
+    });
   }
 }

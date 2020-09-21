@@ -15,6 +15,7 @@ import { memory } from 'console';
 })
 export class MemberDetailComponent implements OnInit {
   @Input() member: Member;
+  members: Member[];
   // member: Member; //@Input()がないと読み込めないらしい。
   constructor(
     private memberService: MemberService,
@@ -23,7 +24,14 @@ export class MemberDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getMembers();
     this.getMember();
+  }
+
+  getMembers(): void {
+    this.memberService
+      .getMembers()
+      .subscribe((members) => (this.members = members));
   }
 
   getMember() {
@@ -38,5 +46,13 @@ export class MemberDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save() {}
+  saveMember() {
+    this.memberService.update(this.member).subscribe(() => this.goBack());
+  }
+
+  deleteMember(){
+    // this.members = this.members.filter((h) => h !== member);
+    // this.members = this.members.fil;
+    this.memberService.delete(this.member).subscribe(() => this.goBack());
+  }
 }

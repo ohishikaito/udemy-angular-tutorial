@@ -5,7 +5,6 @@ import { MEMBERS } from './mock-members';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 // import { InMemoryDataService } from './in-memory-data.service';
-// import 'rxjs/add/operator/toPromise';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +13,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class MemberService {
   constructor(private http: HttpClient) {}
   private membersUrl = 'api/MEMBERS'; // Web APIのURL
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+
   getMembers(): Observable<Member[]> {
-    // return of(MEMBERS);
     return this.http
       .get<Member[]>(this.membersUrl)
       .pipe(catchError(this.handleError<Member[]>('getMembers', [])));
@@ -42,6 +44,33 @@ export class MemberService {
       // 空の結果を返して、アプリを持続可能にする
       return of(result as T);
     };
+  }
+
+  update(member: Member): Observable<Member> {
+    return this.http
+      .put<Member>(this.membersUrl, member, this.httpOptions)
+      .pipe(catchError(this.handleError<Member>('update')));
+
+    // headers = new HttpHeaders({ 'Content-Type': 'application/json' })
+    // return this.http.put(this.membersUrl, member, this.headers);
+  }
+
+  create(member: Member): Observable<Member> {
+    return this.http
+      .post<Member>(this.membersUrl, member, this.httpOptions)
+      .pipe(catchError(this.handleError<Member>('create')));
+  }
+
+  delete(member: Member): Observable<Member> {
+    const id = member.id;
+    // const id = typeof member === 'number' ? member : member.id;
+    // console.log(id);
+    const url = `${this.membersUrl}/${id}`;
+    return this.http
+      .delete<Member>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Member>('create')));
+    // const url = `${this.membersUrl}/${member}`;
+    // return this.http.delete<Member>(url);
   }
 }
 // getMembers(): Promise<Member[]> {

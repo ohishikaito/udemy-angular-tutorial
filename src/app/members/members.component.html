@@ -1,5 +1,9 @@
 <div>
   <h2>社員一覧</h2>
+  <div><label>社員名</label> <input type="text" #memberName /></div>
+  <button (click)="addMember(memberName.value); memberName.value = ''">
+    登録
+  </button>
   <ul class="members">
     <li
       *ngFor="let member of members"
