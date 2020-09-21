@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { MembersComponent } from './members/members.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MemberSearchComponent } from './member-search/member-search.component';
+
 // imports
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,7 @@ import { MemberService } from './member.service';
     MembersComponent,
     MemberDetailComponent,
     DashboardComponent,
+    MemberSearchComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,19 +17,6 @@ export class MemberService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  getMembers(): Observable<Member[]> {
-    return this.http
-      .get<Member[]>(this.membersUrl)
-      .pipe(catchError(this.handleError<Member[]>('getMembers', [])));
-  }
-
-  getMember(id: number): Observable<Member> {
-    const url = `${this.membersUrl}/${id}`;
-    return this.http
-      .get<Member>(url)
-      .pipe(catchError(this.handleError<Member>('getMembers')));
-  }
-
   /**
    * 失敗したHttp操作を処理します。
    * アプリを持続させます。
@@ -44,6 +31,19 @@ export class MemberService {
       // 空の結果を返して、アプリを持続可能にする
       return of(result as T);
     };
+  }
+
+  getMembers(): Observable<Member[]> {
+    return this.http
+      .get<Member[]>(this.membersUrl)
+      .pipe(catchError(this.handleError<Member[]>('getMembers', [])));
+  }
+
+  getMember(id: number): Observable<Member> {
+    const url = `${this.membersUrl}/${id}`;
+    return this.http
+      .get<Member>(url)
+      .pipe(catchError(this.handleError<Member>('getMembers')));
   }
 
   update(member: Member): Observable<Member> {
@@ -68,9 +68,18 @@ export class MemberService {
     const url = `${this.membersUrl}/${id}`;
     return this.http
       .delete<Member>(url, this.httpOptions)
-      .pipe(catchError(this.handleError<Member>('create')));
+      .pipe(catchError(this.handleError<Member>('delete')));
     // const url = `${this.membersUrl}/${member}`;
     // return this.http.delete<Member>(url);
+  }
+
+  search(term: string): Observable<Member[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http
+      .get<Member[]>(`${this.membersUrl}/?name=${term}`)
+      .pipe(catchError(this.handleError<Member[]>('search', [])));
   }
 }
 // getMembers(): Promise<Member[]> {
